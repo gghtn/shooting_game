@@ -56,11 +56,13 @@ int main() {
                 break;
             }
             else if (key == SPACE) { 
-                for (int i = 0; i < BULLET_COUNT && !bull[i].bullet_exist; i++) {   //i번째 총알이 존재하지 않으면 발사
-                    bull[i].bullet_exist = TRUE;
-                    bull[i].bullet_shot = TRUE;
-                    bull[i].b_speed = 0;
-                    break;
+                for (int i = 0; i < BULLET_COUNT; i++) {   //i번째 총알이 존재하지 않으면 발사
+                    if (!bull[i].bullet_exist) {
+                        bull[i].bullet_exist = TRUE;
+                        bull[i].bullet_shot = TRUE;
+                        bull[i].b_speed = 0;
+                        break;
+                    }
                 }
             }
             Render(key, str);
@@ -82,19 +84,21 @@ void RenderBullet(bullet* bull) {
     for (int i = 0; i < BULLET_COUNT; i++) {
         if (bull[i].bullet_shot) {          //처음 쐈을 때 총알의 좌표 초기화
             bull[i].bx = x + 2;
-            bull[i].by = y;
+            bull[i].by = y - 1;
             bull[i].bullet_shot = FALSE;
         }
 
-        if (bull[i].bullet_exist && bull[i].b_speed % BULLET_SPEED == 1) {  //총알의 속도 조절
-            bull[i].by--;
-            if (bull[i].by < 0) bull[i].bullet_exist = FALSE;
-            else {
-                ScreenPrint(bull[i].bx, bull[i].by, "||");
+        if (bull[i].bullet_exist) {
+            if (bull[i].b_speed % BULLET_SPEED == 1) {  //총알의 속도 조절
+                bull[i].by--;
+                if (bull[i].by < 0) bull[i].bullet_exist = FALSE;
+                else {
+                    ScreenPrint(bull[i].bx, bull[i].by, "||");
+                }
             }
+            else ScreenPrint(bull[i].bx, bull[i].by, "||");
+            bull[i].b_speed++;
         }
-        ScreenPrint(bull[i].bx, bull[i].by, "||");
-        bull[i].b_speed++;
     }
 }
 
