@@ -14,3 +14,14 @@ void setConsoleSize(int x, int y) {
 	sprintf(command, "mode con lines=%d cols=%d", y, x);
 	system(command);
 }
+
+BOOL IsKeyDown(int key) {
+	return ((GetAsyncKeyState(key) & 0x8000) != 0);
+}
+
+void CursorView() {
+	CONSOLE_CURSOR_INFO cursor;
+	cursor.dwSize = 1;			//커서 굵기
+	cursor.bVisible = FALSE;	//커서 visible
+	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursor);
+}
