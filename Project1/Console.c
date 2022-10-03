@@ -15,10 +15,12 @@ void setConsoleSize(int x, int y) {
 	system(command);
 }
 
+//키다운
 BOOL IsKeyDown(int key) {
 	return ((GetAsyncKeyState(key) & 0x8000) != 0);
 }
 
+//커서설정
 void CursorView() {
 	CONSOLE_CURSOR_INFO cursor;
 	cursor.dwSize = 1;			//커서 굵기
