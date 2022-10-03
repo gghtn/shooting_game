@@ -4,8 +4,6 @@
 #include <conio.h>
 static int g_nScreenIndex;
 static HANDLE g_hScreen[2];
-enum { UP = 72, LEFT = 75, RIGHT = 77, DOWN = 80, ENTER = 13, ESC = 27, SPACE = 32
-};
 
 extern int x, y;
 //화면 버퍼 초기화
