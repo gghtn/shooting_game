@@ -1,5 +1,8 @@
 #include "Menu.h"
+#include "Console.h"
+#include <Windows.h>
 #include <stdio.h>
+
 
 #define UP 72
 #define DOWN 80
@@ -72,7 +75,8 @@ void LvelUp(int y) {
         for (int i = 0; i < 3; i++) {  
             status[i]++;
         }
-        if (status[3] < 7) status[3]++; // 생명 최대 7
+        status[3] = min(++status[3], 7);
+        //if (status[3] < 7) status[3]++; // 생명 최대 7
         system("cls");
         status_print();
     }
