@@ -59,7 +59,7 @@ int main() {
     else {
         printf("저장파일을 불러오겠습니까?(Y/N)");
         if (getch() == YES) {
-            RoadFile(in);
+            LoadFile(in);
             fclose(in);
         }
     }
